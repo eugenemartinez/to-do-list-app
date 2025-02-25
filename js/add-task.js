@@ -1,4 +1,4 @@
-import { Task } from './task.js';
+import { Task } from './Task.js';
 import { saveToLocalStorage, loadFromLocalStorage } from './storage.js';
 import { setDefaultDate } from './default-date.js';
 import { uncheckAllCheckboxes } from './checkbox-refresh.js';
