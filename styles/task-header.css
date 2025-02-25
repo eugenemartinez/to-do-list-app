@@ -1,0 +1,116 @@
+.task-list-header {
+  margin-top: 20px;
+  margin-bottom: 20px; /* Added margin at the bottom */
+  display: flex;
+  justify-content: space-between; /* Align items to the left */
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #007bff; /* Blue color similar to the Add Task button */
+  border-bottom: 1px solid #0056b3;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.task-list-header div {
+  color: #ffffff; /* Light text color for contrast */
+}
+
+.task-list-header .task-header-checkbox {
+  flex: 0 0 auto;
+  margin-right: 10px; /* Adjusted to match task item spacing */
+}
+
+.task-list-header .task-header-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  background-color: #007bff;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.task-list-header .task-header-checkbox input[type="checkbox"]:checked {
+  background-color: #0056b3;
+  border-color: #004494;
+}
+
+.task-list-header .task-header-checkbox input[type="checkbox"]:hover {
+  background-color: #0056b3;
+  border-color: #004494;
+}
+
+.task-list-header .task-header-name {
+  flex: 2;
+  text-align: left;
+  margin-left: 10px; /* Adjusted to match task item spacing */
+}
+
+.task-list-header .task-header-date {
+  flex: 1;
+  text-align: center;
+  margin-left: -10px; /* Move the due date a bit to the left */
+}
+
+.task-list-header .task-header-status {
+  flex: 1;
+  text-align: center;
+  margin-right: 40px; /* Adjusted to match task item spacing */
+}
+
+.task-list-header .task-header-actions {
+  flex: 0 0 auto;
+  margin-left: auto; /* Push actions to the right */
+}
+
+.task-list-header button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: 2px solid transparent; /* Add border to create separation */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for separation */
+}
+
+.task-list-header #markSelectedInProgressBtn {
+  background-color: rgba(255, 255, 0, 1); /* Stronger yellow */
+  color: black;
+  border-color: rgba(204, 204, 0, 1); /* Add border color */
+}
+
+.task-list-header #markSelectedInProgressBtn:hover {
+  background-color: rgba(204, 204, 0, 1); /* Darker yellow on hover */
+}
+
+.task-list-header #markSelectedStuckBtn {
+  background-color: rgba(255, 0, 0, 0.7); /* Stronger mellow red */
+  color: white;
+  border-color: rgba(204, 0, 0, 0.7); /* Add border color */
+}
+
+.task-list-header #markSelectedStuckBtn:hover {
+  background-color: rgba(204, 0, 0, 0.9); /* Darker mellow red on hover */
+}
+
+.task-list-header #markSelectedDoneBtn {
+  background-color: rgba(0, 255, 0, 0.7); /* Stronger mellow green */
+  color: white;
+  border-color: rgba(0, 204, 0, 0.7); /* Add border color */
+}
+
+.task-list-header #markSelectedDoneBtn:hover {
+  background-color: rgba(0, 204, 0, 0.9); /* Darker mellow green on hover */
+}
+
+.task-list-header #removeSelectedBtn {
+  background-color: #dc3545;
+  border-color: #c82333; /* Add border color */
+}
+
+.task-list-header #removeSelectedBtn:hover {
+  background-color: #c82333;
+}
