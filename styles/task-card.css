@@ -1,0 +1,322 @@
+/* Task Detail Card Overlay */
+.task-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+  backdrop-filter: blur(2px); /* Slight blur effect for modern browsers */
+  z-index: 90;
+  display: none; /* Hidden by default, will be shown with JS */
+  opacity: 0; /* Start with 0 opacity */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+/* Task Detail Card */
+.task-detail-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95); /* Start slightly scaled down */
+  width: 500px; /* Increased width to accommodate content */
+  background-color: white;
+  border-radius: 12px; /* Increased border radius for softer look */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  padding: 28px 32px; /* Increased horizontal padding */
+  z-index: 100;
+  display: none; /* Hidden by default, will be shown with JS */
+  max-height: 80vh; /* Prevent too tall cards */
+  overflow-y: auto; /* Vertical scrolling if needed */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  opacity: 0; /* Start with 0 opacity */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for opacity and transform */
+}
+
+/* Show the overlay and card with transitions */
+.task-detail-overlay.active {
+  display: block;
+  opacity: 1; /* Fade in */
+}
+
+.task-detail-card.active {
+  display: block;
+  opacity: 1; /* Fade in */
+  transform: translate(-50%, -50%) scale(1); /* Scale up to normal size */
+}
+
+/* Card Header */
+.task-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 16px;
+}
+
+.detail-title-input {
+  border: none;
+  outline: none;
+  font-size: 22px; /* Larger font size */
+  font-weight: 600;
+  width: 90%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.detail-title-input:focus {
+  background-color: #f0f7ff; /* Light blue background when focused */
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s, transform 0.1s;
+  margin-right: -8px;
+  padding: 0 8px;
+}
+
+.close-button:hover {
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* Card Content */
+.task-detail-content {
+  padding: 10px 0;
+  width: 100%; /* Ensure content doesn't overflow */
+}
+
+/* Update label alignment for all non-description rows */
+.detail-row {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center; /* Default to center alignment for most rows */
+  width: 100%;
+}
+
+/* Only use flex-start alignment for the description row */
+.description-row {
+  margin-top: 24px;
+  display: flex; /* Change from block to flex to match other rows */
+  align-items: flex-start; /* Align items at the top */
+}
+
+/* Standardize the label width and alignment */
+.detail-label {
+  font-weight: 600;
+  width: 90px;
+  color: #555;
+  font-size: 15px;
+  margin-right: 10px;
+  flex-shrink: 0; /* Prevent label from shrinking */
+}
+
+/* For description row label, add top margin to align with textarea */
+.description-row .detail-label {
+  margin-top: 10px; /* Only add top margin for labels in description rows */
+}
+
+/* Make all input containers the same width */
+.detail-value,
+.detail-date-container,
+.status-dropdown-container,
+.detail-description-container {
+  flex-grow: 1;
+  width: 100%; /* Let it take up all available space */
+  box-sizing: border-box;
+}
+
+/* Input fields styling */
+.detail-date-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.detail-date-input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  outline: none;
+}
+
+.status-dropdown {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  background-color: white;
+  cursor: pointer;
+  appearance: none; /* Remove default browser styling */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23555' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 32px;
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.status-dropdown:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  outline: none;
+}
+
+/* Status dropdown options with colors */
+.status-dropdown option[value="not-started"] {
+  background-color: #f5f5f5;
+}
+
+.status-dropdown option[value="in-progress"] {
+  background-color: #e3f2fd; /* Light blue */
+}
+
+.status-dropdown option[value="stuck"] {
+  background-color: #ffebee; /* Light red */
+}
+
+.status-dropdown option[value="done"] {
+  background-color: #e8f5e9; /* Light green */
+}
+
+/* Description area */
+.detail-description-container {
+  flex-grow: 1;
+  width: 100%; /* Let it take up all available space */
+  box-sizing: border-box;
+  margin-top: 0;
+}
+
+.detail-description-input {
+  width: 100%;
+  min-height: 120px; /* Taller text area */
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.detail-description-input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  outline: none;
+}
+
+/* Action Buttons */
+.detail-actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.btn-save {
+  background-color: #4285f4; /* Google blue */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.btn-save:hover {
+  background-color: #2b76f5;
+  transform: translateY(-1px);
+}
+
+.btn-save:active {
+  transform: translateY(1px);
+}
+
+.btn-delete {
+  background-color: white;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.btn-delete:hover {
+  background-color: #ffebee;
+  transform: translateY(-1px);
+}
+
+.btn-delete:active {
+  transform: translateY(1px);
+}
+
+/* Dark Mode Styles */
+.dark-mode .task-detail-card {
+  background-color: #2d2d2d;
+  color: #f5f5f5;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .detail-title-input {
+  background-color: #2d2d2d;
+  color: #f5f5f5;
+}
+
+.dark-mode .detail-title-input:focus {
+  background-color: #3d3d3d;
+}
+
+.dark-mode .task-detail-header {
+  border-bottom-color: #444;
+}
+
+.dark-mode .detail-label {
+  color: #bbb;
+}
+
+.dark-mode .detail-date-input,
+.dark-mode .status-dropdown,
+.dark-mode .detail-description-input {
+  background-color: #3d3d3d;
+  color: #f5f5f5;
+  border-color: #555;
+}
+
+.dark-mode .status-dropdown {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23bbb' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+}
+
+.dark-mode .detail-date-input:focus,
+.dark-mode .status-dropdown:focus,
+.dark-mode .detail-description-input:focus {
+  border-color: #5c9cf5;
+  box-shadow: 0 0 0 3px rgba(92, 156, 245, 0.15);
+}
+
+.dark-mode .btn-delete {
+  background-color: #2d2d2d;
+  border-color: #f44336;
+}
+
+.dark-mode .btn-delete:hover {
+  background-color: #3a2828;
+}

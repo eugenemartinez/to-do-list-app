@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
+  align-items: center; /* Align items vertically */
 }
 
 .task-form input[type="text"] {
@@ -42,13 +43,151 @@
 .task-form button {
   padding: 10px 20px;
   border: none;
-  background-color: #007bff; /* Updated to match dark mode version */
+  background-color: #007bff;
   color: white;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  flex: 0 0 auto; /* Don't grow or shrink */
 }
 
 .task-form button:hover {
-  background-color: #0056b3; /* Updated to match dark mode version */
+  background-color: #0056b3;
+}
+
+/* Update the date input styling for Flatpickr */
+
+/* Style the date input container */
+.task-form .flatpickr-input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+  width: 130px; /* Smaller fixed width */
+  min-width: 130px; /* Set minimum width */
+  max-width: 130px; /* Set maximum width */
+  flex: 0 0 auto; /* Don't grow or shrink */
+}
+
+.task-form .flatpickr-input:focus {
+  background-color: #fff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-color: #80bdff;
+  outline: none;
+}
+
+/* Hide the calendar icon from the native date input */
+.task-form input[type="text"].flatpickr-input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* Add padding for the Flatpickr calendar icon if needed */
+.task-form .flatpickr-input {
+  padding-right: 30px; /* Make space for the calendar icon */
+}
+
+/* Add Flatpickr specific styles for dark mode */
+body.dark-mode .task-form .flatpickr-input {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+body.dark-mode .task-form .flatpickr-input:focus {
+  border-color: #007bff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide original input when Flatpickr creates the alt input */
+.task-form input.flatpickr-input[type="hidden"] {
+  display: none;
+}
+
+/* Target the alt input created by flatpickr */
+.task-form input.flatpickr-input {
+  width: 130px;
+  min-width: 130px;
+  max-width: 130px;
+}
+
+/* Update task form layout while preserving styles */
+
+/* Adjust task input to take more space */
+.task-form input[type="text"]#taskInput {
+  flex: 3; /* Give it more flex grow factor */
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Dark mode styles for task-form inputs */
+
+/* Dark mode style for the main task input */
+body.dark-mode .task-form input[type="text"]#taskInput {
+  background-color: #333;
+  color: #e0e0e0;
+  border-color: #444;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .task-form input[type="text"]#taskInput:focus {
+  background-color: #3a3a3a;
+  border-color: #007bff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Dark mode style for the flatpickr inputs - both original and alt */
+body.dark-mode .task-form .flatpickr-input,
+body.dark-mode .task-form input.flatpickr-input {
+  background-color: #333;
+  color: #e0e0e0;
+  border-color: #444;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .task-form .flatpickr-input:focus,
+body.dark-mode .task-form input.flatpickr-input:focus {
+  background-color: #3a3a3a;
+  border-color: #007bff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Override any inline styles Flatpickr might apply */
+body.dark-mode .task-form input.flatpickr-input[readonly],
+body.dark-mode .task-form input.flatpickr-input:not([type="hidden"]) {
+  background-color: #333 !important;
+  color: #e0e0e0 !important;
+}
+
+/* Style placeholder text in dark mode */
+body.dark-mode .task-form input::placeholder {
+  color: #999;
+}
+
+/* Responsive design for smaller screens - optional */
+@media (max-width: 600px) {
+  .task-form {
+    flex-wrap: wrap;
+  }
+  
+  .task-form input[type="text"]#taskInput {
+    flex: 1 1 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+  
+  .task-form .flatpickr-input {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    margin-right: 10px;
+  }
 }

@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To Do List App</title>
   <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
   <div class="app-container">
@@ -21,7 +23,7 @@
     <main>
       <div class="task-form">
         <input type="text" id="taskInput" placeholder="Add a new task">
-        <input type="date" id="taskDate">
+        <input type="text" id="taskDate" placeholder="Due date"> <!-- Changed from type="date" to type="text" for Flatpickr -->
         <button id="addTaskBtn">Add Task</button>
       </div>
 
@@ -42,6 +44,43 @@
         </div>
         <div id="taskList">
           <!-- Task list will appear here -->
+        </div>
+      </div>
+      
+      <div class="task-detail-overlay" id="taskDetailOverlay"></div>
+
+      <div class="task-detail-card" id="taskDetailCard">
+        <div class="task-detail-header">
+          <input type="text" id="detailTaskName" class="detail-title-input" placeholder="Task Name">
+          <button id="closeTaskDetail" class="close-button">×</button>
+        </div>
+        <div class="task-detail-content">
+          <div class="detail-row">
+            <span class="detail-label">Due Date:</span>
+            <div class="detail-date-container">
+              <input type="text" id="detailDueDateInput" class="detail-date-input" placeholder="Select a date">
+            </div>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <div class="status-dropdown-container">
+              <select id="detailStatusDropdown" class="status-dropdown">
+                <option value="in-progress">In Progress</option>
+                <option value="stuck">Stuck</option>
+                <option value="done">Done</option>
+              </select>
+            </div>
+          </div>
+          <div class="detail-row description-row">
+            <div class="detail-description-container">
+              <textarea id="detailDescription" class="detail-description-input" 
+                placeholder="Add a description..."></textarea>
+            </div>
+          </div>
+          <div class="detail-actions">
+            <button id="detailSaveBtn" class="btn-save">Save</button>
+            <button id="detailDeleteBtn" class="btn-delete">Delete</button>
+          </div>
         </div>
       </div>
     </main>

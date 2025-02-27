@@ -13,6 +13,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, box-shadow 0.3s;
   animation: fadeIn 0.5s ease-in-out; /* Apply fade-in animation */
+  position: relative; /* Ensure positioning context for animations */
+
 }
 
 @keyframes fadeIn {
@@ -68,19 +70,85 @@
   border-color: #333;
 }
 
-.task-list-item .task-item-name {
+/* Task Name Input Styling */
+.task-list-item .task-item-name-input {
   flex: 2;
   text-align: left;
   font-size: 1.1em;
   color: #333;
-  margin-left: 10px; /* Move the task name a bit to the right */
+  margin-left: 10px;
+  padding: 5px 8px;
+  border: 1px solid transparent; /* Transparent border by default */
+  border-radius: 4px;
+  background-color: transparent;
+  transition: all 0.2s ease;
+  cursor: text; /* Show text cursor to indicate it's editable */
 }
 
-.task-list-item .task-item-date {
+/* Show a subtle background and border on hover */
+.task-list-item .task-item-name-input:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-color: #ccc;
+}
+
+.task-list-item .task-item-name-input:focus {
+  outline: none;
+  background-color: white;
+  border: 1px solid #4285f4;
+  box-shadow: 0 1px 3px rgba(66, 133, 244, 0.2);
+}
+
+.task-list-item .task-item-name-input.editing {
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+/* Date Container and Elements */
+.task-list-item .task-date-container {
   flex: 1;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+/* Remove the date display element and rely only on the input */
+.task-list-item .task-item-date-input {
   text-align: center;
   font-size: 0.9em;
   color: #666;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 5px 8px;
+  width: calc(100% - 16px); /* Full width minus padding */
+}
+
+.task-list-item .task-item-date-input:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-color: #ccc;
+}
+
+.task-list-item .task-item-date-input:focus {
+  outline: none;
+  border-color: #4285f4;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(66, 133, 244, 0.2);
+}
+
+/* Remove the webkit calendar picker indicator styles */
+/* We're using Flatpickr so we don't need this anymore */
+.task-list-item .task-item-date-input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* Make the date input look consistent with the name input */
+.task-list-item .task-item-date-input {
+  background-color: transparent;
 }
 
 .task-list-item .task-item-status {
@@ -114,4 +182,32 @@
 
 .task-list-item .task-item-delete:hover {
   background-color: #c82333;
+}
+
+/* Double-click indicator - subtle hint that tasks can be double-clicked */
+.task-list-item {
+  cursor: pointer;
+}
+
+.task-list-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0);
+  transition: background-color 0.2s;
+  pointer-events: none; /* So it doesn't interfere with clicks */
+  z-index: 1;
+}
+
+.task-list-item:active::after {
+  background: rgba(255, 255, 255, 0.2); /* Subtle feedback on click/touch */
+}
+
+/* Style for the Flatpickr calendar */
+.flatpickr-calendar {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 4px;
 }
