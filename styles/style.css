@@ -13,6 +13,9 @@
 /* Import task list styles */
 @import url('task.css');
 
+/* Import task detail card styles */
+@import url('task-card.css');
+
 /* Import dark mode styles */
 @import url('dark-mode.css');
 

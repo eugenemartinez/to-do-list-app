@@ -84,6 +84,285 @@ body.dark-mode .task-list-item .task-item-delete:hover {
   background-color: #c82333;
 }
 
+/* Task name input in dark mode */
+body.dark-mode .task-list-item .task-item-name-input {
+  color: #e0e0e0;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+body.dark-mode .task-list-item .task-item-name-input:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #555;
+}
+
+body.dark-mode .task-list-item .task-item-name-input:focus,
+body.dark-mode .task-list-item .task-item-name-input.editing {
+  background-color: #3a3a3a;
+  border: 1px solid #555;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Date input in dark mode */
+body.dark-mode .task-list-item .task-item-date-input {
+  color: #e0e0e0;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+body.dark-mode .task-list-item .task-item-date-input:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #555;
+}
+
+body.dark-mode .task-list-item .task-item-date-input:focus {
+  background-color: #3a3a3a;
+  border-color: #555;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Status dropdown in dark mode */
+body.dark-mode .task-list-item .task-item-status {
+  color: #e0e0e0; 
+  background-color: #3a3a3a;
+  border-color: #555;
+}
+
+body.dark-mode .task-list-item .task-item-status:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Adjust status colors to be more visible in dark mode */
+body.dark-mode .task-list-item .task-item-status[value="In Progress"] {
+  background-color: rgba(255, 255, 0, 0.3);
+  color: #fff;
+}
+
+body.dark-mode .task-list-item .task-item-status[value="Stuck"] {
+  background-color: rgba(255, 0, 0, 0.5);
+  color: #fff;
+}
+
+body.dark-mode .task-list-item .task-item-status[value="Done"] {
+  background-color: rgba(0, 255, 0, 0.3);
+  color: #fff;
+}
+
+/* Updated Flatpickr calendar dark mode styles */
+
+/* Flatpickr calendar dark mode styles */
+body.dark-mode .flatpickr-calendar {
+  background: #333;
+  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+/* Calendar header with month/year and navigation */
+body.dark-mode .flatpickr-months {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .flatpickr-month {
+  color: #fff;
+  fill: #fff;
+}
+
+body.dark-mode .flatpickr-current-month {
+  color: #fff;
+}
+
+body.dark-mode .flatpickr-current-month .flatpickr-monthDropdown-months {
+  background-color: #2a2a2a;
+  color: #fff;
+  border-color: #555;
+}
+
+body.dark-mode .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
+  background-color: #444;
+}
+
+body.dark-mode .flatpickr-current-month input.cur-year {
+  color: #fff;
+}
+
+/* Navigation arrows */
+body.dark-mode .flatpickr-months .flatpickr-prev-month,
+body.dark-mode .flatpickr-months .flatpickr-next-month {
+  color: #999;
+  fill: #999;
+}
+
+body.dark-mode .flatpickr-months .flatpickr-prev-month:hover,
+body.dark-mode .flatpickr-months .flatpickr-next-month:hover {
+  color: #fff;
+  fill: #fff;
+}
+
+/* Weekday headers */
+body.dark-mode .flatpickr-weekdays {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode span.flatpickr-weekday {
+  color: #bbb;
+  background-color: transparent;
+}
+
+/* Calendar days */
+body.dark-mode .flatpickr-days {
+  background-color: #333;
+}
+
+body.dark-mode .flatpickr-day {
+  color: #ddd;
+  border-color: transparent;
+}
+
+body.dark-mode .flatpickr-day.selected,
+body.dark-mode .flatpickr-day.startRange,
+body.dark-mode .flatpickr-day.endRange {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+body.dark-mode .flatpickr-day.selected.inRange,
+body.dark-mode .flatpickr-day.startRange.inRange,
+body.dark-mode .flatpickr-day.endRange.inRange {
+  background-color: rgba(0, 123, 255, 0.75);
+  color: #fff;
+}
+
+body.dark-mode .flatpickr-day:hover {
+  background-color: #444;
+  border-color: #444;
+  color: #fff;
+}
+
+body.dark-mode .flatpickr-day.today {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+body.dark-mode .flatpickr-day.today:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+body.dark-mode .flatpickr-day.flatpickr-disabled,
+body.dark-mode .flatpickr-day.flatpickr-disabled:hover,
+body.dark-mode .flatpickr-day.prevMonthDay,
+body.dark-mode .flatpickr-day.nextMonthDay,
+body.dark-mode .flatpickr-day.notAllowed {
+  color: #666;
+}
+
+body.dark-mode .flatpickr-day.prevMonthDay:hover,
+body.dark-mode .flatpickr-day.nextMonthDay:hover {
+  background-color: #3a3a3a;
+  color: #aaa;
+}
+
+/* Time selectors (if used) */
+body.dark-mode .flatpickr-time {
+  background-color: #333;
+  border-color: #444;
+}
+
+body.dark-mode .flatpickr-time input,
+body.dark-mode .flatpickr-time .flatpickr-time-separator,
+body.dark-mode .flatpickr-time .flatpickr-am-pm {
+  color: #fff;
+}
+
+body.dark-mode .flatpickr-time input:hover,
+body.dark-mode .flatpickr-time .flatpickr-am-pm:hover {
+  background-color: #3a3a3a;
+}
+
+/* Ensure the year input is visible */
+body.dark-mode .numInputWrapper input {
+  color: #fff !important;
+  background-color: #2a2a2a !important;
+}
+
+/* Style the month dropdown list items */
+body.dark-mode .flatpickr-monthDropdown-month {
+  color: #fff !important;
+  background-color: #333 !important;
+}
+
+body.dark-mode .flatpickr-monthDropdown-months option {
+  color: #fff;
+  background-color: #333;
+}
+
+/* Task card/detail styles in dark mode */
+body.dark-mode .task-detail-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .task-detail-card {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .task-detail-header {
+  border-bottom: 1px solid #444;
+}
+
+body.dark-mode .detail-title-input {
+  color: #e0e0e0;
+  background-color: transparent;
+}
+
+body.dark-mode .detail-title-input:focus {
+  background-color: #333;
+}
+
+body.dark-mode .close-button {
+  color: #999;
+}
+
+body.dark-mode .close-button:hover {
+  color: #fff;
+}
+
+body.dark-mode .detail-date-input,
+body.dark-mode #detailStatusDropdown,
+body.dark-mode .detail-description-input {
+  background-color: #333;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+body.dark-mode .detail-date-input:focus,
+body.dark-mode #detailStatusDropdown:focus,
+body.dark-mode .detail-description-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+body.dark-mode .btn-save {
+  background-color: #007bff;
+  color: #fff;
+}
+
+body.dark-mode .btn-save:hover {
+  background-color: #0069d9;
+}
+
+body.dark-mode .btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+body.dark-mode .btn-delete:hover {
+  background-color: #c82333;
+}
+
 .dark-mode-button {
   position: absolute;
   top: 50%;

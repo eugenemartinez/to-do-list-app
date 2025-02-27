@@ -1,4 +1,4 @@
-import { saveTasks } from './add-task.js';
+import { saveTasks } from './storage.js';
 import { uncheckAllCheckboxes } from './checkbox-refresh.js';
 
 export function displayTaskOptions() {
