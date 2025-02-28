@@ -1,5 +1,6 @@
 import { saveTasks } from './storage.js';
 import { updateStatusColor } from './status-color.js'; // Import the function from status-color.js
+import { initializeFlatpickr } from './default-date.js';
 
 export function initializeTaskCards() {
   // Get the task card modal elements based on your HTML structure
@@ -17,15 +18,9 @@ export function initializeTaskCards() {
   let activeTaskElement = null;
   
   // Initialize Flatpickr for the date input
-  const detailDatePicker = flatpickr(detailDueDateInput, {
-    dateFormat: "Y-m-d",  // Store in YYYY-MM-DD format for consistency
-    altInput: true,       // Show a more readable format in the input field
-    altFormat: "F j, Y",  // F = full month name, j = day without leading zeros, Y = full year
-    allowInput: true,
-    onClose: function(selectedDates, dateStr) {
-      // Call saveTaskChanges when the date is selected
-      saveTaskChanges();
-    }
+  const detailDatePicker = initializeFlatpickr(detailDueDateInput, () => {
+    // Call saveTaskChanges when the date is selected
+    saveTaskChanges();
   });
   
   // Function to open the task card with details
