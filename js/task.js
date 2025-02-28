@@ -1,5 +1,6 @@
 import { saveTasks } from './storage.js';
 import { updateStatusColor } from './status-color.js'; // Import the function from status-color.js
+import { initializeFlatpickr } from './default-date.js';
 
 export class Task {
   constructor(name, dueDate, description = '') {
@@ -89,26 +90,17 @@ export class Task {
     // Add the input to the container first
     taskDueDateContainer.appendChild(taskDueDate);
     
-    // Update the Flatpickr initialization to display dates in Month day, year format
-
     // Initialize Flatpickr AFTER adding to DOM so both inputs appear in the container
-    const datePicker = flatpickr(taskDueDate, {
-      dateFormat: "Y-m-d", // Format for data storage
-      defaultDate: this.dueDate,
-      allowInput: true,
-      altInput: true,     // Use an alt input for display formatting
-      altFormat: "F j, Y", // Display as Month day, year (January 20, 2020)
-      onClose: (selectedDates, dateStr, instance) => {
-        if (selectedDates.length > 0) {
-          // Get date in YYYY-MM-DD format directly from flatpickr
-          const formattedDate = instance.formatDate(selectedDates[0], "Y-m-d");
-          
-          this.dueDate = formattedDate;
-          taskItem.dataset.dueDate = formattedDate;
-          taskDueDate.dataset.originalDate = formattedDate;
-          
-          saveTasks(); // Call centralized saveTasks function
-        }
+    const datePicker = initializeFlatpickr(taskDueDate, (selectedDates, dateStr, instance) => {
+      if (selectedDates.length > 0) {
+        // Get date in YYYY-MM-DD format directly from flatpickr
+        const formattedDate = instance.formatDate(selectedDates[0], "Y-m-d");
+        
+        this.dueDate = formattedDate;
+        taskItem.dataset.dueDate = formattedDate;
+        taskDueDate.dataset.originalDate = formattedDate;
+        
+        saveTasks(); // Call centralized saveTasks function
       }
     });
     
