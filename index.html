@@ -57,6 +57,16 @@
               <i class="fas fa-trash-alt"></i>
             </button>
           </div>
+          <!-- New dropdowns -->
+          <div class="task-header-filters" style="display: none;">
+            <input type="text" id="filterByDate" class="filter-date-input" placeholder="by Date">
+            <select id="filterByStatus" class="filter-status-dropdown">
+              <option value="" disabled selected>by Status</option>
+              <option value="in-progress">In Progress</option>
+              <option value="stuck">Stuck</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
         </div>
         <div id="taskList">
           <!-- Task list will appear here -->

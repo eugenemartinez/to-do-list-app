@@ -245,6 +245,11 @@
     flex: 0 1 auto; /* Allow the elements to grow and shrink as needed */
   }
 
+  .task-list-item .task-item-checkbox {
+    width: 43px; /* Increase width */
+    height: 43px; /* Increase height */
+  }
+
   .task-list-item .task-item-name-input {
     width: auto; /* Adjust width to fit content */
     max-width: none; /* Remove max-width constraint */
