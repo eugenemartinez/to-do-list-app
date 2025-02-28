@@ -81,7 +81,7 @@
   left: 50%; /* Position at the middle horizontally */
   transform: translate(-50%, -50%); /* Offset by half of its width and height */
   width: 90%; /* Set width to 100% */
-  max-width: calc(100% - 20px); /* Ensure it doesn't overflow the container */
+  max-width: calc(100% - 150px); /* Ensure it doesn't overflow the container */
   padding: 5px 8px;
   font-size: 1.1em;
   color: #333;
@@ -127,7 +127,7 @@
   left: 40px; /* Adjust left position to be beside the checkbox */
   width: auto; /* Adjust width to fit the content */
   max-width: calc(100% - 100px); /* Ensure it doesn't overflow the container */
-  text-align: left;
+  text-align: left !important;
   font-size: 0.9em;
   color: #666;
   border: 1px solid transparent;
@@ -135,7 +135,7 @@
   background-color: transparent;
   cursor: pointer;
   transition: all 0.2s ease;
-  padding: 5px 8px;
+  padding: 5px;
 }
 
 .task-list-item .task-item-date-input:hover {
@@ -288,7 +288,7 @@
   }
 
   .task-list-item .task-item-date-input {
-    text-align: center; /* Center-align the text inside the input */
+    text-align: center !important; /* Center-align the text inside the input */
   }
 
   .task-list-item .task-item-name-input {
