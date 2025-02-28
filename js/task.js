@@ -1,4 +1,5 @@
-import { saveTasks } from './storage.js';  // Updated import path
+import { saveTasks } from './storage.js';
+import { updateStatusColor } from './status-color.js'; // Import the function from status-color.js
 
 export class Task {
   constructor(name, dueDate, description = '') {
@@ -150,36 +151,14 @@ export class Task {
       taskStatus.appendChild(option);
     });
 
-    // Function to update the background color based on the status
-    const updateStatusColor = () => {
-      switch (taskStatus.value) {
-        case 'In Progress':
-          taskStatus.style.backgroundColor = 'rgba(255, 255, 0, 0.5)'; // CMYK equivalent of mellow yellow
-          taskStatus.style.color = 'black';
-          break;
-        case 'Stuck':
-          taskStatus.style.backgroundColor = 'rgba(255, 0, 0, 0.5)'; // CMYK equivalent of mellow red
-          taskStatus.style.color = 'white';
-          break;
-        case 'Done':
-          taskStatus.style.backgroundColor = 'rgba(0, 255, 0, 0.5)'; // CMYK equivalent of mellow green
-          taskStatus.style.color = 'white';
-          break;
-        default:
-          taskStatus.style.backgroundColor = 'white';
-          taskStatus.style.color = 'black';
-          break;
-      }
-    };
-
     // Initial color update
-    updateStatusColor();
+    updateStatusColor(taskStatus, this.status);
 
     // Update color and save tasks on change
     taskStatus.addEventListener('change', () => {
       this.status = taskStatus.value;
       taskItem.dataset.status = this.status; // Update the data attribute
-      updateStatusColor();
+      updateStatusColor(taskStatus, this.status);
       saveTasks(); // Call centralized saveTasks function
     });
 

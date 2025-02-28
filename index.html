@@ -6,6 +6,7 @@
   <title>To Do List App</title>
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
@@ -21,25 +22,40 @@
     </header>
 
     <main>
+      <!-- Task Form -->
       <div class="task-form">
         <input type="text" id="taskInput" placeholder="Add a new task">
-        <input type="text" id="taskDate" placeholder="Due date"> <!-- Changed from type="date" to type="text" for Flatpickr -->
+        <input type="text" id="taskDate" placeholder="Due date"> <!-- Ensure this is type="text" for Flatpickr -->
         <button id="addTaskBtn">Add Task</button>
       </div>
+      <hr class="task-form-separator"> <!-- Add horizontal line here -->
 
+      <!-- Task List -->
       <div class="task-list">
         <div class="task-list-header">
           <div class="task-header-checkbox">
             <input type="checkbox" id="selectAllTasks">
           </div>
-          <div class="task-header-name">Task Name</div>
-          <div class="task-header-date">Due Date</div>
-          <div class="task-header-status">Status</div>
+          <button id="filterTasksBtn" title="Filter Tasks">
+            <i class="fas fa-filter"></i>
+          </button>
+          <button id="sortTasksBtn" title="Sort Tasks">
+            <i class="fas fa-sort"></i>
+          </button>
+          <div class="task-header-name">Task List</div>
           <div class="task-header-actions" style="display: none;">
-            <button id="markSelectedInProgressBtn">Mark Selected In Progress</button>
-            <button id="markSelectedStuckBtn">Mark Selected Stuck</button>
-            <button id="markSelectedDoneBtn">Mark Selected Done</button>
-            <button id="removeSelectedBtn">Remove Selected</button>
+            <button id="markSelectedInProgressBtn" title="In Progress">
+              <i class="fas fa-spinner"></i>
+            </button>
+            <button id="markSelectedStuckBtn" title="Stuck">
+              <i class="fas fa-exclamation-circle"></i>
+            </button>
+            <button id="markSelectedDoneBtn" title="Done">
+              <i class="fas fa-check-circle"></i>
+            </button>
+            <button id="removeSelectedBtn" title="Remove">
+              <i class="fas fa-trash-alt"></i>
+            </button>
           </div>
         </div>
         <div id="taskList">
@@ -47,8 +63,10 @@
         </div>
       </div>
       
+      <!-- Task Detail Overlay -->
       <div class="task-detail-overlay" id="taskDetailOverlay"></div>
 
+      <!-- Task Detail Card -->
       <div class="task-detail-card" id="taskDetailCard">
         <div class="task-detail-header">
           <input type="text" id="detailTaskName" class="detail-title-input" placeholder="Task Name">
@@ -78,7 +96,7 @@
             </div>
           </div>
           <div class="detail-actions">
-            <button id="detailSaveBtn" class="btn-save">Save</button>
+            <button id="detailSaveBtn" class="btn-save">Close</button> <!-- Changed text from Save to Close -->
             <button id="detailDeleteBtn" class="btn-delete">Delete</button>
           </div>
         </div>

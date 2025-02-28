@@ -4,21 +4,15 @@ import { uncheckAllCheckboxes } from './checkbox-refresh.js';
 export function displayTaskOptions() {
   const taskOptionsMenu = document.querySelector('.task-header-actions');
   const taskHeaderName = document.querySelector('.task-header-name');
-  const taskHeaderDate = document.querySelector('.task-header-date');
-  const taskHeaderStatus = document.querySelector('.task-header-status');
 
   // Function to show or hide the task options menu
   const toggleTaskOptionsMenu = (show) => {
     if (show) {
       taskOptionsMenu.style.display = 'block';
       taskHeaderName.style.display = 'none';
-      taskHeaderDate.style.display = 'none';
-      taskHeaderStatus.style.display = 'none';
     } else {
       taskOptionsMenu.style.display = 'none';
-      taskHeaderName.style.display = 'block';
-      taskHeaderDate.style.display = 'block';
-      taskHeaderStatus.style.display = 'block';
+      taskHeaderName.style.display = 'block'; // Always show Task List on mobile
     }
   };
 
