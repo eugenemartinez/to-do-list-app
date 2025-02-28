@@ -1,7 +1,18 @@
+/* Mobile-first styles */
 .app-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 100%;
+    margin: 0;
+    padding: 10px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+    box-shadow: none; /* Remove box shadow for mobile */
+}
+
+/* Styles for larger screens */
+@media (min-width: 769px) {
+    .app-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+}

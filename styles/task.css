@@ -1,20 +1,21 @@
+/* Mobile-first styles */
 .task-list {
   margin-top: 20px;
 }
 
 .task-list-item {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
+  flex-direction: column; /* Stack items vertically for mobile */
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px 15px 100px 15px; /* Add bottom padding to make space for the status dropdown */
   margin-bottom: 10px;
   border-radius: 8px;
   background-color: #e0e0e0; /* Darker color for better contrast */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, box-shadow 0.3s;
   animation: fadeIn 0.5s ease-in-out; /* Apply fade-in animation */
-  position: relative; /* Ensure positioning context for animations */
-
+  position: relative; /* Ensure positioning context for absolute elements */
 }
 
 @keyframes fadeIn {
@@ -58,6 +59,9 @@
   border-radius: 4px;
   background-color: #e0e0e0;
   transition: background-color 0.3s, border-color 0.3s;
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
 .task-list-item .task-item-checkbox:checked {
@@ -72,17 +76,21 @@
 
 /* Task Name Input Styling */
 .task-list-item .task-item-name-input {
-  flex: 2;
-  text-align: left;
+  position: absolute;
+  top: 50%; /* Position at the middle vertically */
+  left: 50%; /* Position at the middle horizontally */
+  transform: translate(-50%, -50%); /* Offset by half of its width and height */
+  width: 90%; /* Set width to 100% */
+  max-width: calc(100% - 20px); /* Ensure it doesn't overflow the container */
+  padding: 5px 8px;
   font-size: 1.1em;
   color: #333;
-  margin-left: 10px;
-  padding: 5px 8px;
   border: 1px solid transparent; /* Transparent border by default */
   border-radius: 4px;
   background-color: transparent;
   transition: all 0.2s ease;
   cursor: text; /* Show text cursor to indicate it's editable */
+  text-align: center; /* Center the text inside the input box */
 }
 
 /* Show a subtle background and border on hover */
@@ -105,18 +113,21 @@
 
 /* Date Container and Elements */
 .task-list-item .task-date-container {
-  flex: 1;
-  position: relative;
-  text-align: center;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  padding: 5px 0;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start;
+  margin-left: 30px; /* Add margin for spacing */
+  margin-top: 40px; /* Add margin for spacing below the task name */
+  width: 100%; /* Full width */
 }
 
-/* Remove the date display element and rely only on the input */
 .task-list-item .task-item-date-input {
-  text-align: center;
+  position: absolute;
+  top: 10px;
+  left: 40px; /* Adjust left position to be beside the checkbox */
+  width: auto; /* Adjust width to fit the content */
+  max-width: calc(100% - 100px); /* Ensure it doesn't overflow the container */
+  text-align: left;
   font-size: 0.9em;
   color: #666;
   border: 1px solid transparent;
@@ -125,7 +136,6 @@
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 5px 8px;
-  width: calc(100% - 16px); /* Full width minus padding */
 }
 
 .task-list-item .task-item-date-input:hover {
@@ -152,8 +162,11 @@
 }
 
 .task-list-item .task-item-status {
-  flex: 1;
-  text-align: center;
+  position: absolute;
+  bottom: 10px; /* Position near the bottom edge */
+  left: 10px;
+  width: calc(100% - 20px); /* Full width minus padding */
+  text-align: center; /* Center the text */
   font-size: 0.9em;
   color: #666;
   padding: 5px;
@@ -161,6 +174,7 @@
   border-radius: 4px;
   background-color: #fff;
   transition: background-color 0.3s, border-color 0.3s;
+  cursor: pointer; /* Change cursor to pointer on hover */
 }
 
 .task-list-item .task-item-status:focus {
@@ -170,7 +184,7 @@
 
 .task-list-item .task-item-delete {
   flex: 0 0 auto;
-  margin-left: 10px;
+  margin-top: 10px; /* Add margin for spacing */
   padding: 5px 10px;
   border: none;
   background-color: #dc3545;
@@ -178,6 +192,10 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  position: absolute;
+  top: 10px; /* Adjusted to move down */
+  right: 15px; /* Adjusted to move left */
+  margin-top: 0; /* Remove top margin */
 }
 
 .task-list-item .task-item-delete:hover {
@@ -210,4 +228,76 @@
 .flatpickr-calendar {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   border-radius: 4px;
+}
+
+/* Styles for larger screens */
+@media (min-width: 769px) {
+  .task-list-item {
+    flex-direction: row; /* Align items horizontally for larger screens */
+    align-items: center;
+    padding: 10px 15px; /* Adjust padding for larger screens */
+  }
+
+  .task-list-item .task-item-checkbox,
+  .task-list-item .task-item-name-input {
+    position: static; /* Remove absolute positioning */
+    margin: 0 10px; /* Add margin for spacing */
+    flex: 0 1 auto; /* Allow the elements to grow and shrink as needed */
+  }
+
+  .task-list-item .task-item-name-input {
+    width: auto; /* Adjust width to fit content */
+    max-width: none; /* Remove max-width constraint */
+    text-align: left; /* Align text to the left */
+  }
+
+  .task-list-item .task-item-date-input,
+  .task-list-item .task-item-status,
+  .task-list-item .task-item-delete {
+    position: static; /* Remove absolute positioning */
+    margin: 0 10px; /* Add margin for spacing */
+  }
+
+  .task-list-item .task-item-name-input,
+  .task-list-item .task-item-date-input {
+    width: auto; /* Adjust width to fit content */
+    max-width: none; /* Remove max-width constraint */
+  }
+
+  .task-list-item .task-item-status {
+    width: auto; /* Adjust width to fit content */
+  }
+
+  .task-list-item .task-item-delete {
+    margin-top: 0; /* Remove top margin for larger screens */
+  }
+
+  .task-list-item .task-date-container {
+    padding: 0; /* Remove padding for the date's div */
+    margin: 0; /* Remove margin for the date's div */
+  }
+
+  div.task-date-container {
+    margin: 0; /* Remove margin for the date's div */
+  }
+
+  .task-list-item .task-date-container {
+    display: flex;
+    justify-content: center; /* Center-align the date input */
+    align-items: center; /* Center-align vertically */
+  }
+
+  .task-list-item .task-item-date-input {
+    text-align: center; /* Center-align the text inside the input */
+  }
+
+  .task-list-item .task-item-name-input {
+    position: static; /* Remove absolute positioning */
+    top: auto; /* Reset top position */
+    left: auto; /* Reset left position */
+    transform: none; /* Remove transform */
+    width: auto; /* Adjust width to fit content */
+    max-width: none; /* Remove max-width constraint */
+    text-align: left; /* Align text to the left */
+  }
 }

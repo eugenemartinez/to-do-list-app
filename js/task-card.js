@@ -1,4 +1,5 @@
 import { saveTasks } from './storage.js';
+import { updateStatusColor } from './status-color.js'; // Import the function from status-color.js
 
 export function initializeTaskCards() {
   // Get the task card modal elements based on your HTML structure
@@ -22,8 +23,8 @@ export function initializeTaskCards() {
     altFormat: "F j, Y",  // F = full month name, j = day without leading zeros, Y = full year
     allowInput: true,
     onClose: function(selectedDates, dateStr) {
-      // Don't auto-save or close the task card when selecting a date
-      // We'll just let the user save manually with the save button
+      // Call saveTaskChanges when the date is selected
+      saveTaskChanges();
     }
   });
   
@@ -70,6 +71,40 @@ export function initializeTaskCards() {
     // Show the task detail card and overlay
     taskDetailOverlay.style.display = 'block';
     taskDetailCard.style.display = 'block';
+    
+    // Apply status color to the status dropdown
+    updateStatusColor(detailStatusDropdown, taskStatus);
+    
+    // Add event listener to update status color on change
+    detailStatusDropdown.addEventListener('change', () => {
+      const selectedStatus = detailStatusDropdown.options[detailStatusDropdown.selectedIndex].text;
+      updateStatusColor(detailStatusDropdown, selectedStatus);
+      saveTaskChanges(); // Auto-save on status change
+    });
+    
+    // Auto-save on blur (when focus is lost) for task name
+    detailTaskName.addEventListener('blur', saveTaskChanges);
+    
+    // Auto-save on blur (when focus is lost) for due date
+    detailDueDateInput.addEventListener('blur', saveTaskChanges);
+    
+    // Auto-save on blur (when focus is lost) for description
+    detailDescription.addEventListener('blur', saveTaskChanges);
+    
+    // Add event listener to deactivate input on Enter key press for task name
+    detailTaskName.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        detailTaskName.blur(); // Remove focus from the input
+      }
+    });
+    
+    // Add event listener to deactivate input on Enter key press for description
+    detailDescription.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault(); // Prevent default Enter behavior
+        detailDescription.blur(); // Remove focus from the input
+      }
+    });
     
     // Focus on the task name input for immediate editing
     setTimeout(() => {
@@ -159,9 +194,6 @@ export function initializeTaskCards() {
     
     // Save to localStorage
     saveTasks();
-    
-    // Close the task card
-    closeTaskCard();
   }
   
   // Function to delete the task
@@ -208,7 +240,7 @@ export function initializeTaskCards() {
     taskDetailOverlay.addEventListener('click', closeTaskCard);
     
     // Save button event
-    detailSaveBtn.addEventListener('click', saveTaskChanges);
+    detailSaveBtn.addEventListener('click', closeTaskCard);
     
     // Delete button event
     detailDeleteBtn.addEventListener('click', deleteTask);
@@ -297,6 +329,25 @@ export function showTaskDetails(task) {
     // Show the task detail card and overlay
     taskDetailOverlay.style.display = 'block';
     taskDetailCard.style.display = 'block';
+    
+    // Apply status color to the status dropdown
+    updateStatusColor(detailStatusDropdown, task.status);
+    
+    // Add event listener to update status color on change
+    detailStatusDropdown.addEventListener('change', () => {
+      const selectedStatus = detailStatusDropdown.options[detailStatusDropdown.selectedIndex].text;
+      updateStatusColor(detailStatusDropdown, selectedStatus);
+      saveTaskChanges(); // Auto-save on status change
+    });
+    
+    // Auto-save on blur (when focus is lost) for task name
+    detailTaskName.addEventListener('blur', saveTaskChanges);
+    
+    // Auto-save on blur (when focus is lost) for due date
+    detailDueDateInput.addEventListener('blur', saveTaskChanges);
+    
+    // Auto-save on blur (when focus is lost) for description
+    detailDescription.addEventListener('blur', saveTaskChanges);
     
     // Add animation classes
     setTimeout(() => {

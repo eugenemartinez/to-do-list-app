@@ -1,9 +1,10 @@
+/* Mobile-first styles */
 .task-list-header {
   margin-top: 20px;
   margin-bottom: 20px; /* Added margin at the bottom */
   display: flex;
-  justify-content: space-between; /* Align items to the left */
-  align-items: center;
+  flex-direction: row; /* Align items horizontally */
+  align-items: center; /* Center items vertically */
   padding: 10px 15px;
   background-color: #007bff; /* Blue color similar to the Add Task button */
   border-bottom: 1px solid #0056b3;
@@ -42,21 +43,9 @@
 }
 
 .task-list-header .task-header-name {
-  flex: 2;
-  text-align: left;
-  margin-left: 10px; /* Adjusted to match task item spacing */
-}
-
-.task-list-header .task-header-date {
-  flex: 1;
-  text-align: center;
-  margin-left: -10px; /* Move the due date a bit to the left */
-}
-
-.task-list-header .task-header-status {
-  flex: 1;
-  text-align: center;
-  margin-right: 40px; /* Adjusted to match task item spacing */
+  margin-left: auto; /* Move the Task List title to the rightmost side */
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 .task-list-header .task-header-actions {
@@ -74,6 +63,16 @@
   transition: background-color 0.3s;
   border: 2px solid transparent; /* Add border to create separation */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for separation */
+}
+
+.task-list-header #filterTasksBtn,
+.task-list-header #sortTasksBtn {
+  background-color: transparent; /* Remove white background */
+}
+
+.task-list-header #filterTasksBtn:hover,
+.task-list-header #sortTasksBtn:hover {
+  background-color: #0056b3; /* Match the blue color of the header */
 }
 
 .task-list-header #markSelectedInProgressBtn {
@@ -113,4 +112,21 @@
 
 .task-list-header #removeSelectedBtn:hover {
   background-color: #c82333;
+}
+
+/* Styles for larger screens */
+@media (min-width: 769px) {
+  .task-list-header {
+    flex-direction: row; /* Align items horizontally for larger screens */
+    justify-content: space-between; /* Align items to the left */
+    align-items: center;
+  }
+
+  .task-list-header .task-header-name {
+    display: block; /* Show these elements on larger screens */
+  }
+
+  .task-list-header .task-header-actions {
+    display: flex; /* Show actions on larger screens */
+  }
 }

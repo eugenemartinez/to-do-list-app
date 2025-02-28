@@ -1,3 +1,5 @@
+/* Mobile-first styles */
+
 /* Task Detail Card Overlay */
 .task-detail-overlay {
   position: fixed;
@@ -19,11 +21,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.95); /* Start slightly scaled down */
-  width: 500px; /* Increased width to accommodate content */
+  width: 90%; /* Use percentage width for mobile-first approach */
+  max-width: 500px; /* Maximum width for larger screens */
   background-color: white;
   border-radius: 12px; /* Increased border radius for softer look */
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
-  padding: 28px 32px; /* Increased horizontal padding */
+  padding: 20px; /* Adjusted padding for mobile */
   z-index: 100;
   display: none; /* Hidden by default, will be shown with JS */
   max-height: 80vh; /* Prevent too tall cards */
@@ -50,17 +53,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px; /* Adjusted margin for mobile */
   border-bottom: 1px solid #eee;
-  padding-bottom: 16px;
+  padding-bottom: 12px; /* Adjusted padding for mobile */
 }
 
 .detail-title-input {
   border: none;
   outline: none;
-  font-size: 22px; /* Larger font size */
+  font-size: 20px; /* Adjusted font size for mobile */
   font-weight: 600;
-  width: 90%;
+  width: 80%; /* Adjusted width for mobile */
   padding: 6px 8px;
   border-radius: 6px;
   transition: background-color 0.2s;
@@ -73,7 +76,7 @@
 .close-button {
   background: none;
   border: none;
-  font-size: 28px;
+  font-size: 24px; /* Adjusted font size for mobile */
   cursor: pointer;
   color: #666;
   transition: color 0.2s, transform 0.1s;
@@ -94,7 +97,7 @@
 
 /* Update label alignment for all non-description rows */
 .detail-row {
-  margin-bottom: 20px;
+  margin-bottom: 16px; /* Adjusted margin for mobile */
   display: flex;
   align-items: center; /* Default to center alignment for most rows */
   width: 100%;
@@ -102,7 +105,7 @@
 
 /* Only use flex-start alignment for the description row */
 .description-row {
-  margin-top: 24px;
+  margin-top: 16px; /* Adjusted margin for mobile */
   display: flex; /* Change from block to flex to match other rows */
   align-items: flex-start; /* Align items at the top */
 }
@@ -110,9 +113,9 @@
 /* Standardize the label width and alignment */
 .detail-label {
   font-weight: 600;
-  width: 90px;
+  width: 80px; /* Adjusted width for mobile */
   color: #555;
-  font-size: 15px;
+  font-size: 14px; /* Adjusted font size for mobile */
   margin-right: 10px;
   flex-shrink: 0; /* Prevent label from shrinking */
 }
@@ -138,10 +141,11 @@
   padding: 10px 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px; /* Adjusted font size for mobile */
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box; /* Include padding and border in width calculation */
+  cursor: pointer; /* Change cursor to pointer (hand) */
 }
 
 .detail-date-input:focus {
@@ -155,7 +159,7 @@
   padding: 10px 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px; /* Adjusted font size for mobile */
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   background-color: white;
   cursor: pointer;
@@ -206,7 +210,7 @@
   border-radius: 8px;
   resize: vertical;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 14px; /* Adjusted font size for mobile */
   line-height: 1.5;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -221,7 +225,7 @@
 
 /* Action Buttons */
 .detail-actions {
-  margin-top: 32px;
+  margin-top: 24px; /* Adjusted margin for mobile */
   display: flex;
   gap: 12px;
   justify-content: flex-end;
@@ -236,7 +240,7 @@
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px; /* Adjusted font size for mobile */
 }
 
 .btn-save:hover {
@@ -257,7 +261,7 @@
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px; /* Adjusted font size for mobile */
 }
 
 .btn-delete:hover {
@@ -269,54 +273,52 @@
   transform: translateY(1px);
 }
 
-/* Dark Mode Styles */
-.dark-mode .task-detail-card {
-  background-color: #2d2d2d;
-  color: #f5f5f5;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
-}
+/* Styles for larger screens */
+@media (min-width: 769px) {
+  .task-detail-card {
+    width: 500px; /* Fixed width for larger screens */
+    padding: 28px 32px; /* Increased padding for larger screens */
+  }
 
-.dark-mode .detail-title-input {
-  background-color: #2d2d2d;
-  color: #f5f5f5;
-}
+  .task-detail-header {
+    margin-bottom: 24px; /* Increased margin for larger screens */
+    padding-bottom: 16px; /* Increased padding for larger screens */
+  }
 
-.dark-mode .detail-title-input:focus {
-  background-color: #3d3d3d;
-}
+  .detail-title-input {
+    font-size: 22px; /* Larger font size for larger screens */
+    width: 90%; /* Adjusted width for larger screens */
+  }
 
-.dark-mode .task-detail-header {
-  border-bottom-color: #444;
-}
+  .close-button {
+    font-size: 28px; /* Larger font size for larger screens */
+  }
 
-.dark-mode .detail-label {
-  color: #bbb;
-}
+  .detail-row {
+    margin-bottom: 20px; /* Increased margin for larger screens */
+  }
 
-.dark-mode .detail-date-input,
-.dark-mode .status-dropdown,
-.dark-mode .detail-description-input {
-  background-color: #3d3d3d;
-  color: #f5f5f5;
-  border-color: #555;
-}
+  .description-row {
+    margin-top: 24px; /* Increased margin for larger screens */
+  }
 
-.dark-mode .status-dropdown {
-  background-image: url("data:image/svg+xml;utf8,<svg fill='%23bbb' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-}
+  .detail-label {
+    width: 90px; /* Increased width for larger screens */
+    font-size: 15px; /* Larger font size for larger screens */
+  }
 
-.dark-mode .detail-date-input:focus,
-.dark-mode .status-dropdown:focus,
-.dark-mode .detail-description-input:focus {
-  border-color: #5c9cf5;
-  box-shadow: 0 0 0 3px rgba(92, 156, 245, 0.15);
-}
+  .detail-date-input,
+  .status-dropdown,
+  .detail-description-input {
+    font-size: 15px; /* Larger font size for larger screens */
+  }
 
-.dark-mode .btn-delete {
-  background-color: #2d2d2d;
-  border-color: #f44336;
-}
+  .detail-actions {
+    margin-top: 32px; /* Increased margin for larger screens */
+  }
 
-.dark-mode .btn-delete:hover {
-  background-color: #3a2828;
+  .btn-save,
+  .btn-delete {
+    font-size: 15px; /* Larger font size for larger screens */
+  }
 }
