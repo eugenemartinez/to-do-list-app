@@ -28,30 +28,6 @@ Feel free to clone this project and run it locally:
    ```
 3. Open the `index.html` file in your web browser to start using the app.
 
-## File Structure
-```
-to-do-list-app
-├── index.html
-├── styles
-│   ├── dark-mode.css
-│   ├── header.css
-│   ├── layout.css
-│   ├── style.css
-│   ├── task-form.css
-│   ├── task-header.css
-│   └── task.css
-├── js
-│   ├── add-task.js
-│   ├── app.js
-│   ├── checkbox-menu.js
-│   ├── checkbox-refresh.js
-│   ├── dark-mode.js
-│   ├── default-date.js
-│   ├── header-checkbox.js
-│   ├── storage.js
-│   └── Task.js
-```
-
 ## Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
 

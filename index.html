@@ -30,7 +30,7 @@
       </div>
       <hr class="task-form-separator"> <!-- Add horizontal line here -->
 
-      <!-- Task List -->
+      <!-- Checkbox Menu -->
       <div class="task-list">
         <div class="task-list-header">
           <div class="task-header-checkbox">
@@ -57,17 +57,69 @@
               <i class="fas fa-trash-alt"></i>
             </button>
           </div>
-          <!-- New dropdowns -->
-          <div class="task-header-filters" style="display: none;">
-            <input type="text" id="filterByDate" class="filter-date-input" placeholder="by Date">
-            <select id="filterByStatus" class="filter-status-dropdown">
-              <option value="" disabled selected>by Status</option>
-              <option value="in-progress">In Progress</option>
-              <option value="stuck">Stuck</option>
-              <option value="done">Done</option>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="task-filters">
+          <!-- Filter by Date Container -->
+          <div class="filter-container date-filter-container">
+            <button id="filterByDateBtn" class="filter-icon" title="Filter by Date">
+              <i class="fas fa-filter filter"></i> <i class="fas fa-calendar-alt calendar"></i>
+            </button>
+            <input type="text" id="filterDateInput" class="filter-date-input flatpickr-input hidden" placeholder="Select a date" readonly="readonly">
+            <button id="resetFilterByDateBtn" class="reset-icon hidden" title="Reset Filter by Date">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <!-- Filter by Status Container -->
+          <div class="filter-container status-filter-container">
+            <button id="filterByStatusBtn" class="filter-icon" title="Filter by Status">
+              <i class="fas fa-filter filter"></i> <i class="fas fa-tasks status"></i>
+            </button>
+            <select id="filterStatusDropdown" class="filter-status-dropdown hidden">
+              <option value="">Select Status</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Stuck">Stuck</option>
+              <option value="Done">Done</option>
             </select>
+            <button id="resetFilterByStatusBtn" class="reset-icon hidden" title="Reset Filter by Status">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <!-- Sort by Date Container -->
+          <div class="filter-container date-sort-container">
+            <button id="sortByDateBtn" class="filter-icon" title="Sort by Date">
+              <i class="fas fa-sort sort arrow"></i> <i class="fas fa-calendar-alt calendar"></i>
+            </button>
+            <select id="sortDateDropdown" class="sort-date-dropdown hidden">
+              <option value="">Select Sort Order</option>
+              <option value="Ascending">Ascending</option>
+              <option value="Descending">Descending</option>
+            </select>
+            <button id="resetSortByDateBtn" class="reset-icon hidden" title="Reset Sort by Date">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <!-- Sort by Status Container -->
+          <div class="filter-container status-sort-container">
+            <button id="sortByStatusBtn" class="filter-icon" title="Sort by Status">
+              <i class="fas fa-sort sort"></i> <i class="fas fa-tasks status"></i>
+            </button>
+            <select id="sortStatusDropdown" class="sort-status-dropdown hidden">
+              <option value="">Select Sort Order</option>
+              <option value="in-progress-first">In Progress First</option>
+              <option value="stuck-first">Stuck First</option>
+              <option value="done-first">Done First</option>
+            </select>
+            <button id="resetSortByStatusBtn" class="reset-icon hidden" title="Reset Sort by Status">
+              <i class="fas fa-times"></i>
+            </button>
           </div>
         </div>
+
         <div id="taskList">
           <!-- Task list will appear here -->
         </div>

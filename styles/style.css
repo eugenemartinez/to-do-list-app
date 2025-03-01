@@ -19,6 +19,9 @@
 /* Import dark mode styles */
 @import url('dark-mode.css');
 
+/* Import sort-filter.css */
+@import url('sort-filter.css');
+
 /* Global font style */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
