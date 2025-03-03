@@ -10,18 +10,90 @@ export function initializeAddTask() {
   const addTaskBtn = document.getElementById('addTaskBtn');
   const taskList = document.getElementById('taskList');
 
+  // Function to create and add sample tasks
+  function addSampleTasks() {
+    // Check if sample tasks have been added before
+    if (localStorage.getItem('sampleTasksAdded') === 'true') {
+      return;
+    }
+    
+    // Get dates for yesterday, today, and tomorrow
+    const today = new Date();
+    
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    // Format dates as YYYY-MM-DD
+    const formatDate = (date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+    
+    const yesterdayStr = formatDate(yesterday);
+    const todayStr = formatDate(today);
+    const tomorrowStr = formatDate(tomorrow);
+    
+    // Sample tasks data
+    const sampleTasks = [
+      {
+        name: "Sample Task 1",
+        dueDate: yesterdayStr,
+        status: "Done",
+        description: "This is a sample completed task with yesterday's due date."
+      },
+      {
+        name: "Sample Task 2",
+        dueDate: todayStr,
+        status: "Stuck",
+        description: "This is a sample stuck task due today."
+      },
+      {
+        name: "Sample Task 3",
+        dueDate: tomorrowStr,
+        status: "In Progress",
+        description: "This is a sample in-progress task due tomorrow."
+      }
+    ];
+    
+    // Add the sample tasks to the task list
+    sampleTasks.forEach(taskData => {
+      const task = new Task(taskData.name, taskData.dueDate, taskData.description);
+      task.status = taskData.status;
+      const taskElement = task.createTaskElement();
+      taskList.appendChild(taskElement);
+    });
+    
+    // Save tasks to local storage
+    saveTasks();
+    
+    // Mark that sample tasks have been added
+    localStorage.setItem('sampleTasksAdded', 'true');
+  }
+
   // Ensure the task date input exists before initializing Flatpickr
   if (taskDateInput) {
     // Initialize Flatpickr for the task form date input
     const datePickr = initializeFlatpickr(taskDateInput);
 
     function loadTasks() {
-      // Use the centralized function from storage.js
+      // Check if tasks exist in local storage
       const tasks = getTasksFromStorage();
+      
+      // If there are no tasks, add sample tasks
+      if (tasks.length === 0) {
+        addSampleTasks();
+        return; // The sample tasks were just added and saved, no need to load again
+      }
       
       // Clear existing tasks first to avoid duplicates
       taskList.innerHTML = '';
       
+      // Load tasks from storage
       tasks.forEach(taskData => {
         const task = new Task(taskData.name, taskData.dueDate, taskData.description);
         task.status = taskData.status || 'In Progress';
@@ -91,4 +163,11 @@ export function initializeAddTask() {
   } else {
     console.error('Task date input not found');
   }
+}
+
+// Function to reset to sample tasks (for development/testing)
+export function resetToSampleTasks() {
+  localStorage.clear();
+  localStorage.removeItem('sampleTasksAdded');
+  window.location.reload();
 }
