@@ -1,6 +1,6 @@
 import { saveTasks } from './storage.js';
 import { updateStatusColor } from './status-color.js'; // Import the function from status-color.js
-import { initializeFlatpickr } from './default-date.js';
+import { initializeFlatpickr, formatDate } from './default-date.js';
 
 export class Task {
   constructor(name, dueDate, description = '') {
@@ -8,25 +8,6 @@ export class Task {
     this.dueDate = dueDate;
     this.status = 'In Progress'; // Default status changed to 'In Progress'
     this.description = description; // Add description property with empty string default
-  }
-
-  formatDate(dateString) {
-    if (!dateString) return ''; // Return empty string for null/undefined/empty dates
-    
-    try {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      const date = new Date(dateString);
-      
-      // Check if date is valid
-      if (isNaN(date.getTime())) {
-        return '';
-      }
-      
-      return date.toLocaleDateString(undefined, options);
-    } catch (error) {
-      console.error('Error formatting date:', error);
-      return '';
-    }
   }
 
   createTaskElement() {
@@ -84,8 +65,7 @@ export class Task {
     taskDueDate.type = 'text'; // Use text type, not date
     taskDueDate.classList.add('task-item-date-input');
     taskDueDate.placeholder = 'Select date';
-    taskDueDate.value = this.formatDate(this.dueDate); // Show formatted date initially
-    taskDueDate.dataset.originalDate = this.dueDate; // Store original date format
+    taskDueDate.value = this.dueDate; // Use the original date format
     
     // Add the input to the container first
     taskDueDateContainer.appendChild(taskDueDate);
@@ -98,7 +78,6 @@ export class Task {
         
         this.dueDate = formattedDate;
         taskItem.dataset.dueDate = formattedDate;
-        taskDueDate.dataset.originalDate = formattedDate;
         
         saveTasks(); // Call centralized saveTasks function
       }

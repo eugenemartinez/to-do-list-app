@@ -1,6 +1,6 @@
 import { saveTasks } from './storage.js';
 import { updateStatusColor } from './status-color.js'; // Import the function from status-color.js
-import { initializeFlatpickr } from './default-date.js';
+import { initializeFlatpickr, formatDate } from './default-date.js';
 
 export function initializeTaskCards() {
   // Get the task card modal elements based on your HTML structure
@@ -171,9 +171,7 @@ export function initializeTaskCards() {
       // If there's a formatted date string visible, update it
       if (dueDateValue) {
         // Only update the display value, not the flatpickr directly
-        const date = new Date(dueDateValue);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        dateInput.value = date.toLocaleDateString(undefined, options);
+        dateInput.value = formatDate(dueDateValue);
       } else {
         dateInput.value = '';  // Clear the input if no date
       }

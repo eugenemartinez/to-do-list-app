@@ -1,7 +1,7 @@
 /* Mobile-first styles */
 .task-list-header {
   margin-top: 20px;
-  margin-bottom: 20px; /* Added margin at the bottom */
+  margin-bottom: 10px; /* Reduced margin at the bottom */
   display: flex;
   flex-direction: row; /* Align items horizontally */
   align-items: center; /* Center items vertically */
@@ -19,7 +19,7 @@
 
 .task-list-header .task-header-checkbox {
   flex: 0 0 auto;
-  margin-right: 10px; /* Adjusted to match task item spacing */
+  margin-left: -4px; /* Adjusted to match task item spacing */
 }
 
 .task-list-header .task-header-checkbox input[type="checkbox"] {
@@ -128,5 +128,10 @@
 
   .task-list-header .task-header-actions {
     display: flex; /* Show actions on larger screens */
+  }
+
+  .task-list-header .task-header-checkbox {
+    flex: 0 0 auto;
+    margin-left: 8px; /* Adjusted to match task item spacing */
   }
 }

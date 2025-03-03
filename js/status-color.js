@@ -19,3 +19,41 @@ export const updateStatusColor = (element, status) => {
       break;
   }
 };
+
+export function setupButtonColors(button, dropdown, resetButton, container) {
+  dropdown.addEventListener('change', (event) => {
+    const selectedStatus = event.target.value;
+    
+    switch (selectedStatus) {
+      case 'In Progress':
+      case 'in-progress-first':
+        // Yellow theme
+        container.style.cssText = 'background-color: rgba(255, 255, 0, 1) !important; color: black !important;';
+        button.style.cssText = 'background-color: rgba(255, 255, 0, 1) !important; color: black !important;';
+        dropdown.style.cssText = 'background-color: rgba(255, 255, 0, 1) !important; color: black !important;';
+        break;
+        
+      case 'Stuck':
+      case 'stuck-first':
+        // Red theme
+        container.style.cssText = 'background-color: rgba(255, 0, 0, 1) !important; color: white !important;';
+        button.style.cssText = 'background-color: rgba(255, 0, 0, 1) !important; color: white !important;';
+        dropdown.style.cssText = 'background-color: rgba(255, 0, 0, 1) !important; color: white !important;';
+        break;
+        
+      case 'Done':
+      case 'done-first':
+        // Green theme
+        container.style.cssText = 'background-color: rgba(0, 255, 0, 1) !important; color: white !important;';
+        button.style.cssText = 'background-color: rgba(0, 255, 0, 1) !important; color: white !important;';
+        dropdown.style.cssText = 'background-color: rgba(0, 255, 0, 1) !important; color: white !important;';
+        break;
+
+      default:
+        container.style.cssText = 'background-color: #3a4a5a !important; color: black !important;';
+        button.style.cssText = 'background-color: #3a4a5a !important; color: white !important;';
+        dropdown.style.cssText = '';
+        break;
+    }
+  });
+}

@@ -169,6 +169,7 @@
   background-position: right 10px center;
   padding-right: 32px;
   box-sizing: border-box; /* Include padding and border in width calculation */
+  text-align: center; /* Center the text inside the dropdown */
 }
 
 .status-dropdown:focus {

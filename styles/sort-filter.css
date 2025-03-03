@@ -1,0 +1,206 @@
+/* Main filters container */
+.task-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 10px 0 10px 0; /* Reduced bottom margin from 15px to 10px */
+}
+
+/* Each filter container */
+.filter-container {
+  display: inline-flex;
+  align-items: center; /* Keep items vertically centered */
+  justify-content: center; /* Center content horizontally */
+  background-color: #3a4a5a; /* More neutral dark blue-gray color */
+  border-radius: 6px;
+  padding: 0 0 0 5px; /* Left padding only, removed right padding */
+  margin-bottom: 0px; /* Reduced from 8px to 6px */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Enhanced shadow for depth */
+  max-width: fit-content; /* Force container to be only as wide as its content */
+  width: max-content; /* Force container to be only as wide as its content */
+  transition: all 0.2s ease; /* Smooth transition for all properties */
+}
+
+/* Active state for filter container */
+.filter-container.active {
+  background-color: #0056b3; /* Changed from #007bff to a darker blue */
+  box-shadow: 0 3px 5px rgba(0,0,123,0.3); /* Enhanced shadow for active state */
+}
+
+/* Button styling - increased vertical padding */
+.filter-icon, .reset-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px 8px; /* Increased vertical padding from 6px to 8px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto; /* Don't grow or shrink */
+}
+
+/* Filter icons specific styling */
+.filter-icon {
+  width: 28px; /* Slightly increased from 26px */
+  flex-basis: 28px;
+  position: relative;
+  color: #ffffff; /* White color for icons */
+  margin: 0 6px 0 2px; /* Increased right margin to 6px, kept left margin at 2px */
+}
+
+/* Create space between the filter/sort icon and the calendar/status icon */
+.filter-icon .filter,
+.filter-icon .sort {
+  margin-right: 5px; /* Increased from 4px for more space between icons */
+  font-size: 11px; /* Reduced from 12px */
+}
+
+.filter-icon .calendar,
+.filter-icon .status {
+  font-size: 13px; /* Reduced from 14px */
+}
+
+/* Reset icon - maintain small circular shape but adjust for alignment */
+.reset-icon {
+  width: 24px; /* Slightly increased from 22px */
+  flex-basis: 24px;
+  background-color: #ff3b30; /* Red background */
+  color: white; /* White X icon */
+  font-size: 11px;
+  border-radius: 50%; /* Make it circular */
+  transition: all 0.2s ease; /* Smooth transition for all properties */
+  padding: 5px 6px; /* Slightly increased vertical and horizontal padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 6px 0 5px; /* Increased right margin to 6px, kept left margin at 5px */
+  align-self: center; /* Center vertically */
+}
+
+/* Hover effect for reset icon */
+.reset-icon:hover {
+  background-color: #ff1a1a; /* Brighter red on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Input and dropdown styling - improved vertical alignment */
+.filter-date-input,
+.filter-status-dropdown,
+.sort-date-dropdown,
+.sort-status-dropdown {
+  border: 1px solid #ced4da; /* Standard light gray border */
+  border-radius: 4px;
+  padding: 0 6px; /* No vertical padding */
+  margin: 0; /* Removed all margins */
+  font-size: 14px;
+  width: auto;
+  min-width: 100px; /* Give a reasonable minimum */
+  max-width: 150px;
+  flex: 0 1 auto; /* Don't grow, can shrink if needed */
+  height: 36px; /* Increased height to fill container completely */
+  line-height: 36px; /* Match the height for text alignment */
+  box-sizing: border-box; /* Make sure padding doesn't affect overall height */
+  vertical-align: middle;
+  background-color: white; /* Changed to white background */
+  color: #333; /* Darker text for better contrast on white */
+  margin-top: 0; /* Remove any default top margin */
+  margin-bottom: 0; /* Remove any default bottom margin */
+  align-self: center; /* Center the input vertically within flex container */
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; /* Smooth transitions */
+}
+
+/* Active state input styling */
+.filter-container.active .filter-date-input,
+.filter-container.active .filter-status-dropdown,
+.filter-container.active .sort-date-dropdown,
+.filter-container.active .sort-status-dropdown {
+  background-color: white; /* Keep white background when active */
+  border-color: #80bdff; /* Light blue border for active inputs */
+  color: #333; /* Keep dark text */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15); /* Subtle blue glow */
+}
+
+/* Input focus state */
+.filter-date-input:focus,
+.filter-status-dropdown:focus,
+.sort-date-dropdown:focus,
+.sort-status-dropdown:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Make sure select elements match the height exactly */
+select.filter-status-dropdown,
+select.sort-date-dropdown,
+select.sort-status-dropdown {
+  padding-right: 20px; /* Space for dropdown arrow */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: auto;
+  appearance: none;
+  background-position: right 2px center;
+  height: 36px; /* Ensure consistent height matching inputs */
+}
+
+/* Update the dropdown arrow color to dark for better visibility against white background */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23333333' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  background-size: 16px;
+}
+
+/* Hidden elements */
+.hidden {
+  display: none;
+}
+
+/* Hide filter and sort buttons by default */
+.date-filter-container,
+.status-filter-container,
+.date-sort-container,
+.status-sort-container {
+  display: none;
+}
+
+/* Show filter and sort buttons when they are not hidden */
+.date-filter-container:not(.hidden),
+.status-filter-container:not(.hidden),
+.date-sort-container:not(.hidden),
+.status-sort-container:not(.hidden) {
+  display: inline-flex;
+}
+
+/* Responsive adjustments - center the filters on mobile */
+@media (max-width: 768px) {
+  .task-filters {
+    display: flex;
+    flex-direction: row; /* Keep horizontal layout */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center the filters on mobile */
+    width: 100%;
+    gap: 8px; /* Slightly smaller gap on mobile */
+  }
+  
+  .filter-container {
+    /* Keep the same width behavior on mobile */
+    width: max-content;
+    max-width: fit-content;
+    margin-right: 4px;
+    margin-bottom: 8px;
+  }
+  
+  .filter-date-input,
+  .filter-status-dropdown,
+  .sort-date-dropdown,
+  .sort-status-dropdown {
+    /* Keep the same flex behavior on mobile */
+    flex: 0 1 auto;
+    min-width: 100px;
+    max-width: 150px;
+  }
+}

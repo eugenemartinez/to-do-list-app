@@ -1,6 +1,6 @@
 /* Mobile-first styles */
 .task-list {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .task-list-item {
@@ -236,6 +236,7 @@
     flex-direction: row; /* Align items horizontally for larger screens */
     align-items: center;
     padding: 10px 15px; /* Adjust padding for larger screens */
+    margin-top: 10px; /* Add margin to the top for separation */
   }
 
   .task-list-item .task-item-checkbox,
@@ -243,6 +244,11 @@
     position: static; /* Remove absolute positioning */
     margin: 0 10px; /* Add margin for spacing */
     flex: 0 1 auto; /* Allow the elements to grow and shrink as needed */
+  }
+
+  .task-list-item .task-item-checkbox {
+    width: 50px; /* Increase width */
+    height: 50px; /* Increase height */
   }
 
   .task-list-item .task-item-name-input {
@@ -266,6 +272,10 @@
 
   .task-list-item .task-item-status {
     width: auto; /* Adjust width to fit content */
+    min-width: 150px; /* Minimum width to fit "In Progress" comfortably */
+    padding-left: 10px; /* Add left padding for text */
+    padding-right: 25px; /* Add right padding for dropdown arrow */
+    text-align: center; /* Left-align text */
   }
 
   .task-list-item .task-item-delete {
