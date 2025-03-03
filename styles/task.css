@@ -247,8 +247,8 @@
   }
 
   .task-list-item .task-item-checkbox {
-    width: 43px; /* Increase width */
-    height: 43px; /* Increase height */
+    width: 50px; /* Increase width */
+    height: 50px; /* Increase height */
   }
 
   .task-list-item .task-item-name-input {
@@ -272,6 +272,10 @@
 
   .task-list-item .task-item-status {
     width: auto; /* Adjust width to fit content */
+    min-width: 150px; /* Minimum width to fit "In Progress" comfortably */
+    padding-left: 10px; /* Add left padding for text */
+    padding-right: 25px; /* Add right padding for dropdown arrow */
+    text-align: center; /* Left-align text */
   }
 
   .task-list-item .task-item-delete {

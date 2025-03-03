@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin: 15px 0;
+  margin: 10px 0 10px 0; /* Reduced bottom margin from 15px to 10px */
 }
 
 /* Each filter container */
@@ -13,8 +13,8 @@
   justify-content: center; /* Center content horizontally */
   background-color: #3a4a5a; /* More neutral dark blue-gray color */
   border-radius: 6px;
-  padding: 0 5px; /* Removed vertical padding completely */
-  margin-bottom: 8px;
+  padding: 0 0 0 5px; /* Left padding only, removed right padding */
+  margin-bottom: 0px; /* Reduced from 8px to 6px */
   box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Enhanced shadow for depth */
   max-width: fit-content; /* Force container to be only as wide as its content */
   width: max-content; /* Force container to be only as wide as its content */
@@ -45,7 +45,7 @@
   flex-basis: 28px;
   position: relative;
   color: #ffffff; /* White color for icons */
-  margin: 0 2px; /* Additional horizontal margin */
+  margin: 0 6px 0 2px; /* Increased right margin to 6px, kept left margin at 2px */
 }
 
 /* Create space between the filter/sort icon and the calendar/status icon */
@@ -73,7 +73,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 3px; /* Additional horizontal margin */
+  margin: 0 6px 0 5px; /* Increased right margin to 6px, kept left margin at 5px */
   align-self: center; /* Center vertically */
 }
 
@@ -91,7 +91,7 @@
   border: 1px solid #ced4da; /* Standard light gray border */
   border-radius: 4px;
   padding: 0 6px; /* No vertical padding */
-  margin: 0 5px;
+  margin: 0; /* Removed all margins */
   font-size: 14px;
   width: auto;
   min-width: 100px; /* Give a reasonable minimum */
@@ -159,13 +159,29 @@ select {
   display: none;
 }
 
-/* Responsive adjustments - changed to keep horizontal layout */
+/* Hide filter and sort buttons by default */
+.date-filter-container,
+.status-filter-container,
+.date-sort-container,
+.status-sort-container {
+  display: none;
+}
+
+/* Show filter and sort buttons when they are not hidden */
+.date-filter-container:not(.hidden),
+.status-filter-container:not(.hidden),
+.date-sort-container:not(.hidden),
+.status-sort-container:not(.hidden) {
+  display: inline-flex;
+}
+
+/* Responsive adjustments - center the filters on mobile */
 @media (max-width: 768px) {
   .task-filters {
     display: flex;
     flex-direction: row; /* Keep horizontal layout */
     flex-wrap: wrap; /* Allow wrapping */
-    justify-content: flex-start;
+    justify-content: center; /* Center the filters on mobile */
     width: 100%;
     gap: 8px; /* Slightly smaller gap on mobile */
   }

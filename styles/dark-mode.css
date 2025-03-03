@@ -429,12 +429,21 @@ body.dark-mode .sort-status-dropdown::placeholder {
 
 /* Prevent flashing just for filter/sort inputs in dark mode */
 body.dark-mode .filter-date-input,
+body.dark-mode .sort-date-dropdown {
+  -webkit-backface-visibility: hidden;
+  background-color: #3d3d3d !important;
+  color: #ffffff !important;
+  border-color: #555 !important;
+  /* Only disable transitions for background-color property */
+  transition-property: box-shadow, border-color !important;
+}
+
+/* Prevent flashing just for filter/sort inputs in dark mode */
 body.dark-mode .filter-status-dropdown,
-body.dark-mode .sort-date-dropdown,
 body.dark-mode .sort-status-dropdown {
   -webkit-backface-visibility: hidden;
-  background-color: #3d3d3d;
-  color: #ffffff;
+  background-color: #3d3d3d !important;
+  color: #ffffff !important;
   border-color: #555 !important;
   /* Only disable transitions for background-color property */
   transition-property: box-shadow, border-color !important;
