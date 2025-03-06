@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List App</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script type="module" crossorigin src="/assets/index-r1uJ9wBj.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CzzmkCo3.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="light-mode">
+      <h1>To Do List</h1>
+      <div class="dark-mode-button">
+        <label class="switch">
+          <input type="checkbox" id="toggleMode">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <!-- Task Form -->
+      <div class="task-form">
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <input type="text" id="taskDate" placeholder="Due date"> <!-- Ensure this is type="text" for Flatpickr -->
+        <button id="addTaskBtn">Add Task</button>
+      </div>
+      <hr class="task-form-separator"> <!-- Add horizontal line here -->
+
+      <!-- Checkbox Menu -->
+      <div class="task-list">
+        <div class="task-list-header">
+          <div class="task-header-checkbox">
+            <input type="checkbox" id="selectAllTasks">
+          </div>
+          <button id="filterTasksBtn" title="Filter Tasks">
+            <i class="fas fa-filter"></i>
+          </button>
+          <button id="sortTasksBtn" title="Sort Tasks">
+            <i class="fas fa-sort"></i>
+          </button>
+          <div class="task-header-name">Task List</div>
+          <div class="task-header-actions" style="display: none;">
+            <button id="markSelectedInProgressBtn" title="In Progress">
+              <i class="fas fa-spinner"></i>
+            </button>
+            <button id="markSelectedStuckBtn" title="Stuck">
+              <i class="fas fa-exclamation-circle"></i>
+            </button>
+            <button id="markSelectedDoneBtn" title="Done">
+              <i class="fas fa-check-circle"></i>
+            </button>
+            <button id="removeSelectedBtn" title="Remove">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="task-filters">
+          <!-- Filter by Date Container -->
+          <div class="filter-container date-filter-container">
+            <button id="filterByDateBtn" class="filter-icon" title="Filter by Date">
+              <i class="fas fa-filter filter"></i> <i class="fas fa-calendar-alt calendar"></i>
+            </button>
+            <input type="text" id="filterDateInput" class="filter-date-input flatpickr-input hidden" placeholder="Select a date" readonly="readonly">
+            <button id="resetFilterByDateBtn" class="reset-icon hidden" title="Reset Filter by Date">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <!-- Filter by Status Container -->
+          <div class="filter-container status-filter-container">
+            <button id="filterByStatusBtn" class="filter-icon" title="Filter by Status">
+              <i class="fas fa-filter filter"></i> <i class="fas fa-tasks status"></i>
+            </button>
+            <select id="filterStatusDropdown" class="filter-status-dropdown hidden">
+              <option value="">Select Status</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Stuck">Stuck</option>
+              <option value="Done">Done</option>
+            </select>
+            <button id="resetFilterByStatusBtn" class="reset-icon hidden" title="Reset Filter by Status">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <!-- Sort by Date Container -->
+          <div class="filter-container date-sort-container">
+            <button id="sortByDateBtn" class="filter-icon" title="Sort by Date">
+              <i class="fas fa-sort sort arrow"></i> <i class="fas fa-calendar-alt calendar"></i>
+            </button>
+            <select id="sortDateDropdown" class="sort-date-dropdown hidden">
+              <option value="">Select Sort Order</option>
+              <option value="Ascending">Ascending</option>
+              <option value="Descending">Descending</option>
+            </select>
+            <button id="resetSortByDateBtn" class="reset-icon hidden" title="Reset Sort by Date">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <!-- Sort by Status Container -->
+          <div class="filter-container status-sort-container">
+            <button id="sortByStatusBtn" class="filter-icon" title="Sort by Status">
+              <i class="fas fa-sort sort"></i> <i class="fas fa-tasks status"></i>
+            </button>
+            <select id="sortStatusDropdown" class="sort-status-dropdown hidden">
+              <option value="">Select Sort Order</option>
+              <option value="in-progress-first">In Progress First</option>
+              <option value="stuck-first">Stuck First</option>
+              <option value="done-first">Done First</option>
+            </select>
+            <button id="resetSortByStatusBtn" class="reset-icon hidden" title="Reset Sort by Status">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="taskList">
+          <!-- Task list will appear here -->
+        </div>
+      </div>
+      
+      <!-- Task Detail Overlay -->
+      <div class="task-detail-overlay" id="taskDetailOverlay"></div>
+
+      <!-- Task Detail Card -->
+      <div class="task-detail-card" id="taskDetailCard">
+        <div class="task-detail-header">
+          <input type="text" id="detailTaskName" class="detail-title-input" placeholder="Task Name">
+          <button id="closeTaskDetail" class="close-button">×</button>
+        </div>
+        <div class="task-detail-content">
+          <div class="detail-row">
+            <span class="detail-label">Due Date:</span>
+            <div class="detail-date-container">
+              <input type="text" id="detailDueDateInput" class="detail-date-input" placeholder="Select a date">
+            </div>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <div class="status-dropdown-container">
+              <select id="detailStatusDropdown" class="status-dropdown">
+                <option value="in-progress">In Progress</option>
+                <option value="stuck">Stuck</option>
+                <option value="done">Done</option>
+              </select>
+            </div>
+          </div>
+          <div class="detail-row description-row">
+            <div class="detail-description-container">
+              <textarea id="detailDescription" class="detail-description-input" 
+                placeholder="Add a description..."></textarea>
+            </div>
+          </div>
+          <div class="detail-actions">
+            <button id="detailSaveBtn" class="btn-save">Close</button> <!-- Changed text from Save to Close -->
+            <button id="detailDeleteBtn" class="btn-delete">Delete</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+</body>
+</html>
