@@ -1,0 +1,26 @@
+{
+  "name": "to-do-list-app",
+  "version": "1.0.0",
+  "description": "## Overview The To Do List app is a simple and intuitive application that helps you manage your tasks efficiently. It allows you to add, edit, and remove tasks, set due dates, and mark tasks with different statuses. The app includes powerful sorting and filtering options, task detail modals, and a dark mode feature. All progress is saved in local storage, ensuring your tasks are preserved even after closing the browser.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eugenemartinez/to-do-list-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eugenemartinez/to-do-list-app/issues"
+  },
+  "homepage": "https://github.com/eugenemartinez/to-do-list-app#readme",
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "vite": "^6.2.0"
+  }
+}
