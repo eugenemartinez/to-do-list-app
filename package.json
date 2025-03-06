@@ -21,6 +21,7 @@
   "homepage": "https://github.com/eugenemartinez/to-do-list-app#readme",
   "devDependencies": {
     "gh-pages": "^6.3.0",
+    "terser": "^5.39.0",
     "vite": "^6.2.0"
   }
 }
